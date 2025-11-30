@@ -1,18 +1,46 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useRef } from "react"
 import { motion } from "framer-motion"
-import { Code2, Sparkles, Zap, Terminal, Braces, X } from "lucide-react"
-import { QRCodeSVG } from "qrcode.react"
+import { Code2, Sparkles, Zap, Terminal, Braces, X, Download } from "lucide-react"
+import { QRCodeCanvas } from "qrcode.react"
 import { AnimatedButton } from "@/components/ui/animated-button"
 
 export function HeroSection() {
   const [showQRModal, setShowQRModal] = useState(false)
+  const [isDownloading, setIsDownloading] = useState(false)
+  const qrRef = useRef<HTMLCanvasElement>(null)
   const projectUrl = typeof window !== "undefined" ? window.location.origin : "http://localhost:3000"
 
+  const downloadQR = () => {
+    if (!qrRef.current) {
+      console.error("QR Canvas not found")
+      return
+    }
+
+    setIsDownloading(true)
+    try {
+      // Obtener la URL de datos del canvas
+      const pngUrl = qrRef.current.toDataURL("image/png").replace("image/png", "image/octet-stream")
+
+      // Crear elemento <a> temporal y simular click
+      const downloadLink = document.createElement("a")
+      downloadLink.href = pngUrl
+      downloadLink.download = "NexusCode-QR.png"
+      document.body.appendChild(downloadLink)
+      downloadLink.click()
+      document.body.removeChild(downloadLink)
+
+      setTimeout(() => setIsDownloading(false), 500)
+    } catch (error) {
+      console.error("Error downloading QR:", error)
+      setIsDownloading(false)
+    }
+  }
+
   return (
-    <section id="inicio" className="relative flex min-h-screen items-center justify-center px-6 pt-20 overflow-hidden">
-      <div className="container mx-auto text-center">
+    <section id="inicio" className="relative flex min-h-screen items-center justify-center px-4 sm:px-6 pt-16 sm:pt-20 overflow-hidden">
+      <div className="container mx-auto max-w-full text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -23,7 +51,7 @@ export function HeroSection() {
             initial={{ scale: 0, rotate: -10 }}
             animate={{ scale: 1, rotate: 0 }}
             transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-            className="mb-8 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-5 py-2.5 text-sm text-primary backdrop-blur-sm"
+            className="mb-6 sm:mb-8 inline-flex flex-col sm:flex-row items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 sm:px-5 py-2.5 text-xs sm:text-sm text-primary backdrop-blur-sm"
           >
             <motion.div
               animate={{ rotate: [0, 360] }}
@@ -39,12 +67,12 @@ export function HeroSection() {
             />
           </motion.div>
 
-          <motion.h1 className="mb-8 text-balance text-5xl font-bold tracking-tight md:text-7xl lg:text-8xl">
+          <motion.h1 className="mb-6 sm:mb-8 text-balance text-3xl sm:text-4xl md:text-5xl lg:text-7xl xl:text-8xl font-bold tracking-tight">
             <motion.span initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
               Transformamos
             </motion.span>
             <motion.span
-              className="relative mx-3 inline-block"
+              className="relative mx-2 sm:mx-3 inline-block"
               initial={{ opacity: 0, scale: 0.5 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.5, type: "spring" }}
@@ -80,7 +108,7 @@ export function HeroSection() {
           </motion.h1>
 
           <motion.p
-            className="mx-auto mb-12 max-w-2xl text-pretty text-xl text-muted-foreground md:text-2xl font-medium"
+            className="mx-auto mb-8 sm:mb-12 max-w-2xl text-pretty text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground font-medium"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8 }}
@@ -90,7 +118,7 @@ export function HeroSection() {
           </motion.p>
 
           <motion.div
-            className="flex flex-wrap items-center justify-center gap-4"
+            className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3 sm:gap-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.9 }}
@@ -199,9 +227,9 @@ export function HeroSection() {
           </motion.div>
         </div>
 
-        {/* Floating QR Code - Outside pointer-events-none */}
+        {/* Floating QR Code - Only on large screens, absolute positioning */}
         <motion.div
-          className="absolute left-[5%] top-[20%] hidden lg:block cursor-pointer z-40 pointer-events-auto"
+          className="hidden lg:block absolute left-[5%] top-[20%] cursor-pointer z-40 pointer-events-auto"
           animate={{
             y: [0, -20, 0],
             rotate: [0, -5, 0],
@@ -211,12 +239,13 @@ export function HeroSection() {
           onClick={() => setShowQRModal(true)}
         >
           <div className="flex flex-col items-center justify-center rounded-2xl border-2 border-primary/30 bg-card/60 p-3 backdrop-blur-md shadow-2xl shadow-primary/20 hover:border-primary/60 hover:shadow-primary/40 transition-all">
-            <QRCodeSVG
+            <QRCodeCanvas
               value={projectUrl}
               size={100}
               level="H"
               includeMargin={true}
               bgColor="#ffffff"
+              fgColor="#000000"
             />
             <div className="mt-2 text-xs font-semibold text-primary">Escanea</div>
           </div>
@@ -251,17 +280,28 @@ export function HeroSection() {
                   Utiliza tu dispositivo móvil para acceder al proyecto
                 </p>
                 
-                <div className="rounded-xl border-2 border-primary/30 bg-white p-6">
-                  <QRCodeSVG
+                <div className="rounded-xl border-2 border-primary/30 bg-white p-6 flex justify-center">
+                  <QRCodeCanvas
+                    ref={qrRef}
                     value={projectUrl}
                     size={280}
                     level="H"
                     includeMargin={true}
                     bgColor="#ffffff"
+                    fgColor="#000000"
                   />
                 </div>
 
                 <p className="text-xs text-muted-foreground mt-4">{projectUrl}</p>
+
+                <button
+                  onClick={downloadQR}
+                  disabled={isDownloading}
+                  className="mt-4 flex items-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-primary to-accent text-white font-semibold hover:shadow-lg hover:shadow-primary/50 transition-all duration-300 hover:scale-105 disabled:opacity-60 disabled:cursor-not-allowed"
+                >
+                  <Download className={`h-5 w-5 ${isDownloading ? "animate-bounce" : ""}`} />
+                  {isDownloading ? "Descargando..." : "Descargar QR"}
+                </button>
               </div>
             </motion.div>
           </motion.div>
