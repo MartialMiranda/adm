@@ -1,7 +1,14 @@
 "use client"
 
+import { config, library } from "@fortawesome/fontawesome-svg-core"
+import "@fortawesome/fontawesome-svg-core/styles.css"
+import { faCow } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { motion } from "framer-motion"
-import { Star, HelpCircle, Milk, Dog } from "lucide-react"
+import { Dog, HelpCircle, Star } from "lucide-react"
+
+config.autoAddCss = false
+library.add(faCow)
 
 const bcgProducts = [
   {
@@ -22,13 +29,13 @@ const bcgProducts = [
     growth: 30,
     share: 28,
     color: "bg-yellow-500",
-    description: "Demanda creciente, posición competitiva sólida. Potencial para convertirse en vaca lechera.",
+    description: "Demanda creciente, posición competitiva sólida. Potencial para convertirse en Vaca.",
     revenue: "$320,000/año",
   },
   {
     name: "Sistemas ERP",
-    quadrant: "Vaca Lechera",
-    icon: Milk,
+    quadrant: "Vaca",
+    icon: "cow",
     growth: 5,
     share: 40,
     color: "bg-green-500",
@@ -86,7 +93,7 @@ const bcgStrategies = [
     title: "Ordeño de Sistemas ERP",
     description:
       "Optimizar costos operativos en ERP mediante automatización y outsourcing de soporte nivel 1. Utilizar el flujo de caja generado para financiar productos interrogación.",
-    quadrant: "Vaca Lechera (optimizar)",
+    quadrant: "Vaca (optimizar)",
     investment: "$40,000/año",
   },
   {
@@ -171,12 +178,12 @@ export function BcgSection() {
               {/* Vacas (Alta participación, Bajo crecimiento) */}
               <div className="relative rounded-bl-xl bg-green-500/10 p-4">
                 <div className="absolute bottom-4 left-4 flex items-center gap-2">
-                  <Milk className="h-5 w-5 text-green-500" />
+                  <FontAwesomeIcon icon="cow" />
                   <span className="text-sm font-semibold text-green-500">Vaca</span>
                 </div>
                 <div className="flex h-full flex-col items-center justify-center gap-2 pb-8">
                   {bcgProducts
-                    .filter((p) => p.quadrant === "Vaca Lechera")
+                    .filter((p) => p.quadrant === "Vaca")
                     .map((p) => (
                       <div key={p.name} className="rounded-lg bg-green-500/20 px-3 py-1.5 text-xs font-medium">
                         {p.name}
@@ -226,10 +233,18 @@ export function BcgSection() {
             >
               <div className="mb-4 flex items-center justify-between">
                 <div className={`flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br ${product.color}/30 ${product.color}/20 shadow-md`}>
-                  <product.icon
-                    className={`h-6 w-6`}
-                    style={{ color: product.color.replace("bg-", "").replace("-500", "") }}
-                  />
+                  {typeof product.icon === "string" ? (
+                    <FontAwesomeIcon
+                      icon={product.icon as any}
+                      className={`h-6 w-6`}
+                      style={{ color: product.color.replace("bg-", "").replace("-500", "") }}
+                    />
+                  ) : (
+                    <product.icon
+                      className={`h-6 w-6`}
+                      style={{ color: product.color.replace("bg-", "").replace("-500", "") }}
+                    />
+                  )}
                 </div>
                 <span className={`rounded-full ${product.color}/20 px-3 py-1 text-sm font-bold`}>
                   {product.quadrant}
