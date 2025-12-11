@@ -109,7 +109,6 @@ export function PorterSection() {
       <div className="container mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          // CORRECCIÓN: Cambiado 'whileInView' por 'animate' para carga instantánea
           animate={{ opacity: 1, y: 0 }}
           className="mb-16 text-center"
         >
@@ -127,10 +126,9 @@ export function PorterSection() {
         {/* Porter Diagram */}
         <div className="mb-16">
           <div className="relative mx-auto max-w-4xl">
-            {/* Center - Rivalry */}
+            {/* Center - Rivalry (AHORA CONTIENE LA DESCRIPCIÓN) */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
-              // CORRECCIÓN: Carga instantánea
               animate={{ opacity: 1, scale: 1 }}
               className="mx-auto mb-8 w-full max-w-md"
             >
@@ -141,9 +139,23 @@ export function PorterSection() {
                     <Sword className="h-8 w-8" />
                   </div>
                   <h3 className="mb-3 text-2xl font-bold text-gray-900 dark:text-foreground">Rivalidad entre Competidores</h3>
-                  <span className="inline-block rounded-full bg-red-500/20 px-4 py-2 text-base font-bold text-red-500">
+                  <span className="inline-block rounded-full bg-red-500/20 px-4 py-2 text-base font-bold text-red-500 mb-4">
                     Alta
                   </span>
+                  
+                  {/* CORRECCIÓN: Agregamos la descripción y factores que faltaban */}
+                  <p className="mb-3 text-base text-gray-600 dark:text-muted-foreground font-medium">
+                    {porterForces[0].description}
+                  </p>
+                  <ul className="space-y-2 text-left bg-background/50 p-3 rounded-lg border border-border/50">
+                    {porterForces[0].factors.map((factor, i) => (
+                      <li key={i} className="flex items-start gap-2 text-sm text-gray-600 dark:text-muted-foreground font-medium">
+                        <div className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-primary" />
+                        {factor}
+                      </li>
+                    ))}
+                  </ul>
+
                 </div>
               </div>
             </motion.div>
@@ -154,7 +166,6 @@ export function PorterSection() {
                 <motion.div
                   key={force.title}
                   initial={{ opacity: 0, y: 20 }}
-                  // CORRECCIÓN: Carga instantánea con delay escalonado
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
                   className="group rounded-xl border-2 border-gray-200 dark:border-border/60 bg-white dark:bg-card/70 p-6 backdrop-blur-sm transition-all hover:border-primary/50 hover:shadow-xl hover:shadow-primary/20"
@@ -189,7 +200,6 @@ export function PorterSection() {
         {/* Strategies */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }} 
-          // CORRECCIÓN: Carga instantánea
           animate={{ opacity: 1, y: 0 }}
         >
           <h3 className="mb-8 text-center text-3xl font-bold text-gray-900 dark:text-foreground">Estrategias Competitivas Derivadas</h3>
@@ -198,7 +208,6 @@ export function PorterSection() {
               <motion.div
                 key={strategy.title}
                 initial={{ opacity: 0, y: 20 }}
-                // CORRECCIÓN: Carga instantánea
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
                 className="group rounded-xl border-2 border-gray-200 dark:border-border/60 bg-white/50 dark:bg-primary/12 p-6 backdrop-blur-sm transition-all hover:border-primary/50 hover:shadow-lg"
