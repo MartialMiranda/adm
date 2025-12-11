@@ -16,7 +16,7 @@ const companyData = [
     icon: MapPin,
     title: "Ubicación Geográfica",
     content: "Santa Cruz De La Sierra, Bolivia",
-    description: "Av. Junin #1440, Edificio Alameda, Piso 12, Oficina 1201, Zona Central",
+    description: "Calle René Moreno, Torre Mercantil Santa Cruz, Piso 12, Oficina 1201, Casco Viejo",
   },
   {
     icon: Scale,

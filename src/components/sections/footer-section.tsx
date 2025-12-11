@@ -20,7 +20,7 @@ export function FooterSection() {
             {/* Se eliminó 'grayscale' (blanco y negro). */}
             {/* Se añadió 'opacity-90 hover:opacity-100' para un efecto sutil de "enfoque" al pasar el mouse. */}
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3799.587884439366!2d-63.18437862566738!3d-17.78135897097746!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x93f1e804c7d00001%3A0x6d3d3d6333333333!2sEdificio%20Alameda!5e0!3m2!1ses!2sbo!4v1700000000000!5m2!1ses!2sbo"
+              src="https://maps.google.com/maps?q=Torre+Mercantil+Santa+Cruz&t=&z=15&ie=UTF8&iwloc=&output=embed"
               width="100%"
               height="100%"
               style={{ border: 0 }}
@@ -35,8 +35,8 @@ export function FooterSection() {
                 <MapPin className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <p className="font-bold text-foreground">NexusCode S.R.L.</p>
-                  <p className="text-sm text-muted-foreground">Av. Junin #1440, Edificio Alameda</p>
-                  <p className="text-sm text-muted-foreground">Piso 12, Oficina 1201, Zona Central</p>
+                  <p className="text-sm text-muted-foreground">Calle René Moreno, Torre Mercantil</p>
+                  <p className="text-sm text-muted-foreground">Piso 12, Oficina 1201, Casco Viejo</p>
                   <p className="text-sm text-muted-foreground">Santa Cruz de la Sierra, Bolivia</p>
                 </div>
               </div>
@@ -168,7 +168,7 @@ export function FooterSection() {
             <ul className="space-y-3 text-base text-gray-600 dark:text-muted-foreground font-medium">
               <li className="flex items-start gap-2">
                 <MapPin className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
-                <span>Av. Junin #1440, Edificio Alameda, Piso 12, Of. 1201</span>
+                <span>Torre Mercantil Santa Cruz, Piso 12, Of. 1201, Casco Viejo</span>
               </li>
               <li className="flex items-center gap-2">
                 <Phone className="h-4 w-4 text-primary" />
