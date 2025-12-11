@@ -19,9 +19,9 @@ const values = [
 ]
 
 const objectives = [
-  "Alcanzar una facturación de $2M USD para 2025 con un crecimiento sostenido del 30% anual",
-  "Expandir operaciones a 3 países de Latinoamérica (Perú, Chile, Colombia) antes de 2026",
-  "Obtener certificación CMMI Nivel 3 para procesos de desarrollo de software en 2025",
+  "Alcanzar una facturación de $2M USD para 2027 con un crecimiento sostenido del 30% anual",
+  "Expandir operaciones a 3 países de Latinoamérica (Perú, Chile, Colombia) antes de 2030",
+  "Obtener certificación CMMI Nivel 3 para procesos de desarrollo de software en 2027",
   "Desarrollar y lanzar 2 productos SaaS propios para el mercado empresarial",
   "Incrementar la tasa de retención de clientes al 95% mediante programas de fidelización",
 ]
