@@ -36,7 +36,7 @@ export function FooterSection() {
                 <div>
                   <p className="font-bold text-foreground">NexusCode S.R.L.</p>
                   <p className="text-sm text-muted-foreground">Calle René Moreno, Torre Mercantil</p>
-                  <p className="text-sm text-muted-foreground">Piso 12, Oficina 1201, Casco Viejo</p>
+                  <p className="text-sm text-muted-foreground">Piso 12, Oficina 1201</p>
                   <p className="text-sm text-muted-foreground">Santa Cruz de la Sierra, Bolivia</p>
                 </div>
               </div>
@@ -168,7 +168,7 @@ export function FooterSection() {
             <ul className="space-y-3 text-base text-gray-600 dark:text-muted-foreground font-medium">
               <li className="flex items-start gap-2">
                 <MapPin className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
-                <span>Torre Mercantil Santa Cruz, Piso 12, Of. 1201, Casco Viejo</span>
+                <span>Torre Mercantil Santa Cruz, Piso 12, Of. 1201</span>
               </li>
               <li className="flex items-center gap-2">
                 <Phone className="h-4 w-4 text-primary" />
