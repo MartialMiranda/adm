@@ -47,7 +47,8 @@ export function CompanyInfoSection() {
             <motion.span className="mb-4 inline-block text-sm font-medium uppercase tracking-widest text-primary">
               Información Corporativa
             </motion.span>
-            <h2 className="text-balance text-4xl font-bold md:text-5xl lg:text-6xl">
+            {/* CORRECCIÓN: text-gray-900 para modo claro */}
+            <h2 className="text-balance text-4xl font-bold md:text-5xl lg:text-6xl text-gray-900 dark:text-foreground">
               Aspectos Administrativos,{" "}
               <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
                 Legales y Comerciales
@@ -108,8 +109,9 @@ export function CompanyInfoSection() {
               </div>
             </motion.div>
 
+            {/* CORRECCIÓN: Textos visibles en modo claro */}
             <motion.h3
-              className="text-3xl font-bold"
+              className="text-3xl font-bold text-gray-900 dark:text-foreground"
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -117,7 +119,7 @@ export function CompanyInfoSection() {
               Nexus<span className="text-primary">Code</span>
             </motion.h3>
             <motion.p
-              className="text-muted-foreground text-lg"
+              className="text-gray-600 dark:text-muted-foreground text-lg"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
@@ -143,9 +145,10 @@ export function CompanyInfoSection() {
                 >
                   <item.icon className="h-6 w-6" />
                 </motion.div>
-                <h3 className="text-xl font-bold mb-3">{item.title}</h3>
-                <p className="font-semibold text-lg text-foreground mb-2">{item.content}</p>
-                <p className="text-base text-muted-foreground">{item.description}</p>
+                {/* CORRECCIÓN: Textos internos de las tarjetas */}
+                <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-foreground">{item.title}</h3>
+                <p className="font-semibold text-lg text-gray-800 dark:text-foreground mb-2">{item.content}</p>
+                <p className="text-base text-gray-600 dark:text-muted-foreground">{item.description}</p>
               </GlowingCard>
             </ScrollReveal>
           ))}

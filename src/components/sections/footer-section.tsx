@@ -5,7 +5,8 @@ import { Mail, Phone, MapPin, Linkedin, Github, Twitter } from "lucide-react"
 
 export function FooterSection() {
   return (
-    <footer className="relative border-t border-border/50 bg-muted/30 py-16 px-6">
+    // CORRECCIÓN: Se cambió 'bg-muted/30' por 'bg-transparent'
+    <footer className="relative border-t border-border/50 bg-transparent py-16 px-6">
       <div className="container mx-auto">
         {/* Map Section */}
         <motion.div
@@ -26,6 +27,7 @@ export function FooterSection() {
               referrerPolicy="no-referrer-when-downgrade"
               className="absolute inset-0"
             />
+            {/* Tarjeta flotante del mapa: Se mantiene bg-card/90 para legibilidad sobre el mapa */}
             <div className="absolute bottom-6 left-6 rounded-lg border-2 border-primary/30 bg-card/90 p-4 backdrop-blur-md shadow-lg">
               <div className="flex items-start gap-2">
                 <MapPin className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />

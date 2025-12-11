@@ -80,7 +80,7 @@ const strategies = [
 
 export function SwotSection() {
   return (
-    <section id="foda" className="relative py-32 px-6">
+    <div className="relative py-10">
       <div className="container mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -224,6 +224,6 @@ export function SwotSection() {
           </div>
         </motion.div>
       </div>
-    </section>
+    </div>
   )
 }

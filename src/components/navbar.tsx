@@ -12,9 +12,6 @@ const navItems = [
   { name: "Servicios", href: "#servicios" },
   { name: "Organización", href: "#organizacion" },
   { name: "Estrategia", href: "#estrategia" },
-  { name: "FODA", href: "#foda" },
-  { name: "Porter", href: "#porter" },
-  { name: "BCG", href: "#bcg" },
 ]
 
 export function Navbar() {
@@ -41,7 +38,8 @@ export function Navbar() {
                 N
               </div>
             </div>
-            <span className="text-xl font-bold tracking-tight">
+            {/* CORRECCIÓN: Color explícito para modo claro/oscuro */}
+            <span className="text-xl font-bold tracking-tight text-gray-900 dark:text-foreground">
               Nexus<span className="text-primary">Code</span>
             </span>
           </div>
@@ -82,7 +80,8 @@ export function Navbar() {
               N
             </div>
           </div>
-          <span className="text-xl font-bold tracking-tight">
+          {/* CORRECCIÓN: Color explícito */}
+          <span className="text-xl font-bold tracking-tight text-gray-900 dark:text-foreground">
             Nexus<span className="text-primary">Code</span>
           </span>
         </motion.a>
@@ -93,7 +92,8 @@ export function Navbar() {
             <motion.a
               key={item.name}
               href={item.href}
-              className="group relative rounded-lg px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+              // CORRECCIÓN: Color de texto base más oscuro en light mode
+              className="group relative rounded-lg px-4 py-2 text-sm font-medium text-gray-600 dark:text-muted-foreground transition-colors hover:text-primary dark:hover:text-foreground"
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.05 }}
@@ -118,7 +118,8 @@ export function Navbar() {
               variant="ghost"
               size="icon"
               onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
-              className="relative rounded-full overflow-hidden"
+              // CORRECCIÓN: Se agregó text-gray-900 dark:text-foreground para asegurar visibilidad del icono
+              className="relative rounded-full overflow-hidden text-gray-900 dark:text-foreground hover:bg-gray-200 dark:hover:bg-primary/20"
             >
               <motion.div
                 className="absolute inset-0 bg-gradient-to-r from-primary/20 to-accent/20 opacity-0"
@@ -155,7 +156,8 @@ export function Navbar() {
             <Button
               variant="ghost"
               size="icon"
-              className="lg:hidden rounded-full"
+              // CORRECCIÓN: Color explícito para botón menú móvil
+              className="lg:hidden rounded-full text-gray-900 dark:text-foreground hover:bg-gray-200 dark:hover:bg-primary/20"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
               <AnimatePresence mode="wait">
@@ -191,7 +193,8 @@ export function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="glass border-t border-border/50 lg:hidden overflow-hidden"
+            // CORRECCIÓN: Fondo blanco sólido en light mode para legibilidad
+            className="glass bg-white/90 dark:bg-black/90 border-t border-border/50 lg:hidden overflow-hidden"
           >
             <motion.div
               className="container mx-auto flex flex-col gap-2 px-6 py-4"
@@ -206,7 +209,8 @@ export function Navbar() {
                 <motion.a
                   key={item.name}
                   href={item.href}
-                  className="rounded-lg px-4 py-3 text-sm font-medium transition-colors hover:bg-primary/10"
+                  // CORRECCIÓN: Color de texto explícito
+                  className="rounded-lg px-4 py-3 text-sm font-medium text-gray-900 dark:text-foreground transition-colors hover:bg-primary/10"
                   onClick={() => setMobileMenuOpen(false)}
                   variants={{
                     open: { opacity: 1, x: 0 },

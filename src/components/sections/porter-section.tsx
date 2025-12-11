@@ -105,19 +105,21 @@ const porterStrategies = [
 
 export function PorterSection() {
   return (
-    <section id="porter" className="relative py-32 px-6 bg-muted/30">
+    <div className="relative py-10">
       <div className="container mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          // CORRECCIÓN: Cambiado 'whileInView' por 'animate' para carga instantánea
+          animate={{ opacity: 1, y: 0 }}
           className="mb-16 text-center"
         >
           <span className="mb-4 inline-block text-sm font-medium uppercase tracking-widest text-primary">
             Análisis Competitivo
           </span>
-          <h2 className="mb-4 text-balance text-4xl font-bold md:text-5xl">Modelo de las 5 Fuerzas de Porter</h2>
-          <p className="mx-auto max-w-2xl text-muted-foreground">
+          <h2 className="mb-4 text-balance text-4xl font-bold md:text-5xl text-gray-900 dark:text-foreground">
+            Modelo de las 5 Fuerzas de Porter
+          </h2>
+          <p className="mx-auto max-w-2xl text-gray-600 dark:text-muted-foreground">
             Análisis del entorno competitivo para identificar oportunidades estratégicas
           </p>
         </motion.div>
@@ -128,17 +130,17 @@ export function PorterSection() {
             {/* Center - Rivalry */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
+              // CORRECCIÓN: Carga instantánea
+              animate={{ opacity: 1, scale: 1 }}
               className="mx-auto mb-8 w-full max-w-md"
             >
-              <div className="relative rounded-2xl border-2 border-primary/40 bg-gradient-to-br from-card to-card/50 p-8 text-center shadow-xl hover:shadow-2xl hover:shadow-primary/30 transition-all">
+              <div className="relative rounded-2xl border-2 border-primary/40 bg-gradient-to-br from-white to-gray-50 dark:from-card dark:to-card/50 p-8 text-center shadow-xl hover:shadow-2xl hover:shadow-primary/30 transition-all">
                 <div className="absolute inset-0 animate-pulse-glow rounded-2xl bg-primary opacity-20 blur-xl" />
                 <div className="relative">
                   <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-primary/80 text-primary-foreground shadow-lg">
                     <Sword className="h-8 w-8" />
                   </div>
-                  <h3 className="mb-3 text-2xl font-bold">Rivalidad entre Competidores</h3>
+                  <h3 className="mb-3 text-2xl font-bold text-gray-900 dark:text-foreground">Rivalidad entre Competidores</h3>
                   <span className="inline-block rounded-full bg-red-500/20 px-4 py-2 text-base font-bold text-red-500">
                     Alta
                   </span>
@@ -152,10 +154,10 @@ export function PorterSection() {
                 <motion.div
                   key={force.title}
                   initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
+                  // CORRECCIÓN: Carga instantánea con delay escalonado
+                  animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
-                  className="group rounded-xl border-2 border-border/60 bg-gradient-to-br from-card to-card/70 p-6 backdrop-blur-sm transition-all hover:border-primary/50 hover:shadow-xl hover:shadow-primary/20"
+                  className="group rounded-xl border-2 border-gray-200 dark:border-border/60 bg-white dark:bg-card/70 p-6 backdrop-blur-sm transition-all hover:border-primary/50 hover:shadow-xl hover:shadow-primary/20"
                 >
                   <div className="mb-4 flex items-center justify-between">
                     <div className="flex h-14 w-14 items-center justify-center rounded-lg bg-gradient-to-br from-primary/30 to-primary/20 text-primary shadow-md">
@@ -168,11 +170,11 @@ export function PorterSection() {
                       {force.level}
                     </span>
                   </div>
-                  <h4 className="mb-2 text-xl font-bold">{force.title}</h4>
-                  <p className="mb-3 text-base text-muted-foreground font-medium">{force.description}</p>
+                  <h4 className="mb-2 text-xl font-bold text-gray-900 dark:text-foreground">{force.title}</h4>
+                  <p className="mb-3 text-base text-gray-600 dark:text-muted-foreground font-medium">{force.description}</p>
                   <ul className="space-y-2">
                     {force.factors.map((factor, i) => (
-                      <li key={i} className="flex items-start gap-2 text-base text-muted-foreground font-medium">
+                      <li key={i} className="flex items-start gap-2 text-base text-gray-600 dark:text-muted-foreground font-medium">
                         <div className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-primary" />
                         {factor}
                       </li>
@@ -185,23 +187,27 @@ export function PorterSection() {
         </div>
 
         {/* Strategies */}
-        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-          <h3 className="mb-8 text-center text-3xl font-bold">Estrategias Competitivas Derivadas</h3>
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }} 
+          // CORRECCIÓN: Carga instantánea
+          animate={{ opacity: 1, y: 0 }}
+        >
+          <h3 className="mb-8 text-center text-3xl font-bold text-gray-900 dark:text-foreground">Estrategias Competitivas Derivadas</h3>
           <div className="grid gap-6 md:grid-cols-1 lg:grid-cols-2">
             {porterStrategies.map((strategy, index) => (
               <motion.div
                 key={strategy.title}
                 initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                // CORRECCIÓN: Carga instantánea
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
-                className="group rounded-xl border-2 border-border/60 bg-gradient-to-br from-primary/12 to-transparent p-6 backdrop-blur-sm transition-all hover:border-primary/50 hover:shadow-lg"
+                className="group rounded-xl border-2 border-gray-200 dark:border-border/60 bg-white/50 dark:bg-primary/12 p-6 backdrop-blur-sm transition-all hover:border-primary/50 hover:shadow-lg"
               >
                 <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-primary/20 text-base font-bold text-primary">
                   {index + 1}
                 </div>
-                <h4 className="mb-2 text-lg font-bold">{strategy.title}</h4>
-                <p className="mb-3 text-base text-muted-foreground font-medium">{strategy.description}</p>
+                <h4 className="mb-2 text-lg font-bold text-gray-900 dark:text-foreground">{strategy.title}</h4>
+                <p className="mb-3 text-base text-gray-600 dark:text-muted-foreground font-medium">{strategy.description}</p>
                 <div className="rounded-lg bg-accent/10 px-3 py-2">
                   <span className="text-xs font-medium text-accent">{strategy.impact}</span>
                 </div>
@@ -210,6 +216,6 @@ export function PorterSection() {
           </div>
         </motion.div>
       </div>
-    </section>
+    </div>
   )
 }

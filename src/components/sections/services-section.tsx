@@ -67,11 +67,12 @@ export function ServicesSection() {
             >
               Nuestros Servicios
             </motion.span>
-            <h2 className="mb-6 text-balance text-4xl font-bold md:text-5xl lg:text-6xl">
+            {/* CORRECCIÓN: Título negro en modo claro */}
+            <h2 className="mb-6 text-balance text-4xl font-bold md:text-5xl lg:text-6xl text-gray-900 dark:text-foreground">
               Soluciones Tecnológicas{" "}
               <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Integrales</span>
             </h2>
-            <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
+            <p className="mx-auto max-w-2xl text-lg text-gray-600 dark:text-muted-foreground">
               Ofrecemos un portafolio completo de servicios de desarrollo de software y consultoría tecnológica
             </p>
           </div>
@@ -90,7 +91,8 @@ export function ServicesSection() {
                     <service.icon className="h-7 w-7" />
                   </motion.div>
 
-                  <h3 className="mb-3 flex items-center gap-2 text-2xl font-bold">
+                  {/* CORRECCIÓN: Título de tarjeta */}
+                  <h3 className="mb-3 flex items-center gap-2 text-2xl font-bold text-gray-900 dark:text-foreground">
                     {service.title}
                     <motion.div
                       initial={{ x: -5, opacity: 0 }}
@@ -101,13 +103,15 @@ export function ServicesSection() {
                     </motion.div>
                   </h3>
 
-                  <p className="mb-6 text-base leading-relaxed text-muted-foreground">{service.description}</p>
+                  {/* CORRECCIÓN: Descripción */}
+                  <p className="mb-6 text-base leading-relaxed text-gray-600 dark:text-muted-foreground">{service.description}</p>
 
                   <ul className="space-y-2">
                     {service.features.map((feature, i) => (
                       <motion.li
                         key={feature}
-                        className="flex items-center gap-2 text-sm text-muted-foreground"
+                        // CORRECCIÓN: Elementos de lista
+                        className="flex items-center gap-2 text-sm text-gray-600 dark:text-muted-foreground"
                         initial={{ opacity: 0, x: -10 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}

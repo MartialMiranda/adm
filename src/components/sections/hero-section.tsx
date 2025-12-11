@@ -20,10 +20,7 @@ export function HeroSection() {
 
     setIsDownloading(true)
     try {
-      // Obtener la URL de datos del canvas
       const pngUrl = qrRef.current.toDataURL("image/png").replace("image/png", "image/octet-stream")
-
-      // Crear elemento <a> temporal y simular click
       const downloadLink = document.createElement("a")
       downloadLink.href = pngUrl
       downloadLink.download = "NexusCode-QR.png"
@@ -51,7 +48,8 @@ export function HeroSection() {
             initial={{ scale: 0, rotate: -10 }}
             animate={{ scale: 1, rotate: 0 }}
             transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-            className="mb-6 sm:mb-8 inline-flex flex-col sm:flex-row items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 sm:px-5 py-2.5 text-xs sm:text-sm text-primary backdrop-blur-sm"
+            // FIX: Fondo blanco semitransparente en light mode para que resalte
+            className="mb-6 sm:mb-8 inline-flex flex-col sm:flex-row items-center gap-2 rounded-full border border-primary/30 bg-white/60 dark:bg-primary/10 px-4 sm:px-5 py-2.5 text-xs sm:text-sm text-primary backdrop-blur-sm shadow-sm"
           >
             <motion.div
               animate={{ rotate: [0, 360] }}
@@ -67,7 +65,8 @@ export function HeroSection() {
             />
           </motion.div>
 
-          <motion.h1 className="mb-6 sm:mb-8 text-balance text-3xl sm:text-4xl md:text-5xl lg:text-7xl xl:text-8xl font-bold tracking-tight">
+          {/* FIX: Texto negro sólido en light mode (text-gray-900) */}
+          <motion.h1 className="mb-6 sm:mb-8 text-balance text-3xl sm:text-4xl md:text-5xl lg:text-7xl xl:text-8xl font-bold tracking-tight text-gray-900 dark:text-foreground">
             <motion.span initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
               Transformamos
             </motion.span>
@@ -87,7 +86,7 @@ export function HeroSection() {
                 transition={{ delay: 0.9, duration: 0.6 }}
               />
               <motion.span
-                className="absolute -inset-4 -z-10 rounded-2xl bg-primary/10 blur-xl"
+                className="absolute -inset-4 -z-10 rounded-2xl bg-primary/10 blur-xl hidden dark:block"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: [0.3, 0.5, 0.3] }}
                 transition={{ delay: 1, duration: 3, repeat: Number.POSITIVE_INFINITY }}
@@ -97,8 +96,9 @@ export function HeroSection() {
               en
             </motion.span>
             <br />
+            {/* FIX: Texto gris oscuro en light mode */}
             <motion.span
-              className="text-muted-foreground"
+              className="text-gray-600 dark:text-muted-foreground"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.7 }}
@@ -108,7 +108,7 @@ export function HeroSection() {
           </motion.h1>
 
           <motion.p
-            className="mx-auto mb-8 sm:mb-12 max-w-2xl text-pretty text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground font-medium"
+            className="mx-auto mb-8 sm:mb-12 max-w-2xl text-pretty text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 dark:text-muted-foreground font-medium"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8 }}
@@ -136,7 +136,7 @@ export function HeroSection() {
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.5 }} className="mt-24">
             <motion.a
               href="#empresa"
-              className="group inline-flex flex-col items-center gap-3 text-muted-foreground hover:text-foreground transition-colors"
+              className="group inline-flex flex-col items-center gap-3 text-gray-500 dark:text-muted-foreground hover:text-primary transition-colors"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -163,8 +163,9 @@ export function HeroSection() {
             }}
             transition={{ repeat: Number.POSITIVE_INFINITY, duration: 8, ease: "easeInOut" }}
           >
-            <div className="flex h-24 w-40 flex-col rounded-xl border border-primary/20 bg-card/40 backdrop-blur-md shadow-2xl shadow-primary/10">
-              <div className="flex items-center gap-1.5 border-b border-border/50 px-3 py-2">
+            {/* FIX: Fondo blanco sólido en light mode (bg-white) */}
+            <div className="flex h-24 w-40 flex-col rounded-xl border border-gray-200 dark:border-primary/20 bg-white dark:bg-card/40 backdrop-blur-md shadow-2xl dark:shadow-primary/10">
+              <div className="flex items-center gap-1.5 border-b border-gray-100 dark:border-border/50 px-3 py-2">
                 <div className="h-2.5 w-2.5 rounded-full bg-red-500" />
                 <div className="h-2.5 w-2.5 rounded-full bg-yellow-500" />
                 <div className="h-2.5 w-2.5 rounded-full bg-green-500" />
@@ -193,7 +194,8 @@ export function HeroSection() {
             }}
             transition={{ repeat: Number.POSITIVE_INFINITY, duration: 7, ease: "easeInOut" }}
           >
-            <div className="flex h-20 w-20 items-center justify-center rounded-2xl border border-accent/30 bg-accent/10 backdrop-blur-md shadow-xl shadow-accent/10">
+            {/* FIX: Fondo blanco sólido en light mode */}
+            <div className="flex h-20 w-20 items-center justify-center rounded-2xl border border-accent/20 dark:border-accent/30 bg-white dark:bg-accent/10 backdrop-blur-md shadow-xl dark:shadow-accent/10">
               <Braces className="h-10 w-10 text-accent" />
             </div>
           </motion.div>
@@ -207,7 +209,8 @@ export function HeroSection() {
             }}
             transition={{ repeat: Number.POSITIVE_INFINITY, duration: 6, ease: "easeInOut" }}
           >
-            <div className="h-28 w-28 rounded-full bg-gradient-to-br from-primary/30 to-accent/30 blur-xl" />
+            {/* FIX: Opacidad reducida en light mode para no manchar */}
+            <div className="h-28 w-28 rounded-full bg-gradient-to-br from-primary/30 to-accent/30 blur-xl opacity-60 dark:opacity-100" />
           </motion.div>
 
           {/* Code snippet */}
@@ -219,15 +222,16 @@ export function HeroSection() {
             }}
             transition={{ repeat: Number.POSITIVE_INFINITY, duration: 9, ease: "easeInOut" }}
           >
-            <div className="rounded-lg border border-primary/20 bg-card/50 p-3 backdrop-blur-md font-mono text-xs shadow-lg">
-              <span className="text-accent">const</span> <span className="text-foreground">future</span>{" "}
-              <span className="text-muted-foreground">=</span> <span className="text-primary">await</span>{" "}
-              <span className="text-foreground">build()</span>
+            {/* FIX: Fondo blanco y texto oscuro en light mode */}
+            <div className="rounded-lg border border-gray-200 dark:border-primary/20 bg-white dark:bg-card/50 p-3 backdrop-blur-md font-mono text-xs shadow-lg">
+              <span className="text-accent">const</span> <span className="text-gray-800 dark:text-foreground">future</span>{" "}
+              <span className="text-gray-400 dark:text-muted-foreground">=</span> <span className="text-primary">await</span>{" "}
+              <span className="text-gray-800 dark:text-foreground">build()</span>
             </div>
           </motion.div>
         </div>
 
-        {/* Floating QR Code - Only on large screens, absolute positioning */}
+        {/* Floating QR Code */}
         <motion.div
           className="hidden lg:block absolute left-[5%] top-[20%] cursor-pointer z-40 pointer-events-auto"
           animate={{
@@ -238,7 +242,8 @@ export function HeroSection() {
           transition={{ repeat: Number.POSITIVE_INFINITY, duration: 9, ease: "easeInOut", delay: 0.5 }}
           onClick={() => setShowQRModal(true)}
         >
-          <div className="flex flex-col items-center justify-center rounded-2xl border-2 border-primary/30 bg-card/60 p-3 backdrop-blur-md shadow-2xl shadow-primary/20 hover:border-primary/60 hover:shadow-primary/40 transition-all">
+          {/* FIX: Fondo blanco en light mode */}
+          <div className="flex flex-col items-center justify-center rounded-2xl border-2 border-gray-200 dark:border-primary/30 bg-white dark:bg-card/60 p-3 backdrop-blur-md shadow-2xl dark:shadow-primary/20 hover:border-primary/60 transition-all">
             <QRCodeCanvas
               value={projectUrl}
               size={100}
@@ -258,25 +263,25 @@ export function HeroSection() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setShowQRModal(false)}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4"
           >
             <motion.div
               initial={{ scale: 0.5, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.5, opacity: 0 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative rounded-2xl border-2 border-primary/40 bg-gradient-to-br from-card to-card/50 p-8 backdrop-blur-md shadow-2xl shadow-primary/30"
+              className="relative rounded-2xl border-2 border-gray-200 dark:border-primary/40 bg-white dark:bg-card/80 p-8 backdrop-blur-md shadow-2xl max-w-sm w-full"
             >
               <button
                 onClick={() => setShowQRModal(false)}
-                className="absolute right-4 top-4 p-2 hover:bg-muted rounded-lg transition-colors"
+                className="absolute right-4 top-4 p-2 hover:bg-gray-100 dark:hover:bg-muted rounded-lg transition-colors"
               >
-                <X className="h-6 w-6 text-muted-foreground hover:text-foreground" />
+                <X className="h-6 w-6 text-gray-500 dark:text-muted-foreground hover:text-foreground" />
               </button>
               
               <div className="flex flex-col items-center justify-center gap-4">
-                <h3 className="text-2xl font-bold text-foreground">Escanea el código QR</h3>
-                <p className="text-sm text-muted-foreground max-w-sm text-center">
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-foreground">Escanea el código QR</h3>
+                <p className="text-sm text-gray-500 dark:text-muted-foreground text-center">
                   Utiliza tu dispositivo móvil para acceder al proyecto
                 </p>
                 
@@ -284,7 +289,7 @@ export function HeroSection() {
                   <QRCodeCanvas
                     ref={qrRef}
                     value={projectUrl}
-                    size={280}
+                    size={200}
                     level="H"
                     includeMargin={true}
                     bgColor="#ffffff"
@@ -292,12 +297,12 @@ export function HeroSection() {
                   />
                 </div>
 
-                <p className="text-xs text-muted-foreground mt-4">{projectUrl}</p>
+                <p className="text-xs text-gray-400 dark:text-muted-foreground mt-2 text-center break-all">{projectUrl}</p>
 
                 <button
                   onClick={downloadQR}
                   disabled={isDownloading}
-                  className="mt-4 flex items-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-primary to-accent text-white font-semibold hover:shadow-lg hover:shadow-primary/50 transition-all duration-300 hover:scale-105 disabled:opacity-60 disabled:cursor-not-allowed"
+                  className="mt-4 w-full flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-primary to-accent text-white font-semibold hover:shadow-lg hover:shadow-primary/50 transition-all duration-300 hover:scale-105 disabled:opacity-60 disabled:cursor-not-allowed"
                 >
                   <Download className={`h-5 w-5 ${isDownloading ? "animate-bounce" : ""}`} />
                   {isDownloading ? "Descargando..." : "Descargar QR"}

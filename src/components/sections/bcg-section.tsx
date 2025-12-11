@@ -114,19 +114,21 @@ const bcgStrategies = [
 
 export function BcgSection() {
   return (
-    <section id="bcg" className="relative py-32 px-6">
+    <div className="relative py-10">
       <div className="container mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          // CORRECCIÓN: Animación instantánea
+          animate={{ opacity: 1, y: 0 }}
           className="mb-16 text-center"
         >
           <span className="mb-4 inline-block text-sm font-medium uppercase tracking-widest text-primary">
             Análisis de Portafolio
           </span>
-          <h2 className="mb-4 text-balance text-4xl font-bold md:text-5xl">Matriz BCG de Productos</h2>
-          <p className="mx-auto max-w-2xl text-muted-foreground">
+          <h2 className="mb-4 text-balance text-4xl font-bold md:text-5xl text-gray-900 dark:text-foreground">
+            Matriz BCG de Productos
+          </h2>
+          <p className="mx-auto max-w-2xl text-gray-600 dark:text-muted-foreground">
             Clasificación estratégica de nuestras líneas de negocio según crecimiento y participación de mercado
           </p>
         </motion.div>
@@ -134,14 +136,14 @@ export function BcgSection() {
         {/* BCG Matrix Visual */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
+          // CORRECCIÓN: Animación instantánea
+          animate={{ opacity: 1, scale: 1 }}
           className="mb-16 mx-auto max-w-4xl"
         >
-          <div className="relative aspect-square max-h-[500px] w-full rounded-2xl border border-border/50 bg-card/50 p-4">
+          <div className="relative aspect-square max-h-[500px] w-full rounded-2xl border border-gray-200 dark:border-border/50 bg-white dark:bg-card/50 p-4">
             {/* Grid */}
             <div className="absolute inset-4 grid grid-cols-2 grid-rows-2 gap-1">
-              {/* Estrellas (Alta participación, Alto crecimiento) */}
+              {/* Estrellas */}
               <div className="relative rounded-tl-xl bg-yellow-500/10 p-4">
                 <div className="absolute left-4 top-4 flex items-center gap-2">
                   <Star className="h-5 w-5 text-yellow-500" />
@@ -151,14 +153,14 @@ export function BcgSection() {
                   {bcgProducts
                     .filter((p) => p.quadrant === "Estrella")
                     .map((p) => (
-                      <div key={p.name} className="rounded-lg bg-yellow-500/20 px-3 py-1.5 text-xs font-medium">
+                      <div key={p.name} className="rounded-lg bg-yellow-500/20 px-3 py-1.5 text-xs font-medium text-gray-800 dark:text-foreground">
                         {p.name}
                       </div>
                     ))}
                 </div>
               </div>
 
-              {/* Interrogación (Baja participación, Alto crecimiento) */}
+              {/* Interrogación */}
               <div className="relative rounded-tr-xl bg-blue-500/10 p-4">
                 <div className="absolute right-4 top-4 flex items-center gap-2">
                   <span className="text-sm font-semibold text-blue-500">Interrogación</span>
@@ -168,14 +170,14 @@ export function BcgSection() {
                   {bcgProducts
                     .filter((p) => p.quadrant === "Interrogación")
                     .map((p) => (
-                      <div key={p.name} className="rounded-lg bg-blue-500/20 px-3 py-1.5 text-xs font-medium">
+                      <div key={p.name} className="rounded-lg bg-blue-500/20 px-3 py-1.5 text-xs font-medium text-gray-800 dark:text-foreground">
                         {p.name}
                       </div>
                     ))}
                 </div>
               </div>
 
-              {/* Vacas (Alta participación, Bajo crecimiento) */}
+              {/* Vacas */}
               <div className="relative rounded-bl-xl bg-green-500/10 p-4">
                 <div className="absolute bottom-4 left-4 flex items-center gap-2">
                   <FontAwesomeIcon icon="cow" />
@@ -185,14 +187,14 @@ export function BcgSection() {
                   {bcgProducts
                     .filter((p) => p.quadrant === "Vaca")
                     .map((p) => (
-                      <div key={p.name} className="rounded-lg bg-green-500/20 px-3 py-1.5 text-xs font-medium">
+                      <div key={p.name} className="rounded-lg bg-green-500/20 px-3 py-1.5 text-xs font-medium text-gray-800 dark:text-foreground">
                         {p.name}
                       </div>
                     ))}
                 </div>
               </div>
 
-              {/* Perros (Baja participación, Bajo crecimiento) */}
+              {/* Perros */}
               <div className="relative rounded-br-xl bg-red-500/10 p-4">
                 <div className="absolute bottom-4 right-4 flex items-center gap-2">
                   <span className="text-sm font-semibold text-red-500">Perros</span>
@@ -202,7 +204,7 @@ export function BcgSection() {
                   {bcgProducts
                     .filter((p) => p.quadrant === "Perro")
                     .map((p) => (
-                      <div key={p.name} className="rounded-lg bg-red-500/20 px-3 py-1.5 text-xs font-medium">
+                      <div key={p.name} className="rounded-lg bg-red-500/20 px-3 py-1.5 text-xs font-medium text-gray-800 dark:text-foreground">
                         {p.name}
                       </div>
                     ))}
@@ -211,10 +213,10 @@ export function BcgSection() {
             </div>
 
             {/* Axis Labels */}
-            <div className="absolute -left-2 top-1/2 -translate-y-1/2 -rotate-90 text-xs font-medium text-muted-foreground">
+            <div className="absolute -left-2 top-1/2 -translate-y-1/2 -rotate-90 text-xs font-medium text-gray-500 dark:text-muted-foreground">
               Crecimiento del Mercado ↑
             </div>
-            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 text-xs font-medium text-muted-foreground">
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 text-xs font-medium text-gray-500 dark:text-muted-foreground">
               Participación Relativa de Mercado →
             </div>
           </div>
@@ -226,10 +228,10 @@ export function BcgSection() {
             <motion.div
               key={product.name}
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              // CORRECCIÓN: Animación instantánea
+              animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
-              className="group rounded-xl border-2 border-border/60 bg-gradient-to-br from-card to-card/60 p-6 backdrop-blur-sm transition-all hover:border-primary/50 hover:shadow-xl"
+              className="group rounded-xl border-2 border-gray-200 dark:border-border/60 bg-white dark:bg-card/60 p-6 backdrop-blur-sm transition-all hover:border-primary/50 hover:shadow-xl"
             >
               <div className="mb-4 flex items-center justify-between">
                 <div className={`flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br ${product.color}/30 ${product.color}/20 shadow-md`}>
@@ -246,23 +248,23 @@ export function BcgSection() {
                     />
                   )}
                 </div>
-                <span className={`rounded-full ${product.color}/20 px-3 py-1 text-sm font-bold`}>
+                <span className={`rounded-full ${product.color}/20 px-3 py-1 text-sm font-bold text-gray-800 dark:text-foreground`}>
                   {product.quadrant}
                 </span>
               </div>
-              <h4 className="mb-2 text-lg font-bold">{product.name}</h4>
-              <p className="mb-3 text-base text-muted-foreground font-medium">{product.description}</p>
+              <h4 className="mb-2 text-lg font-bold text-gray-900 dark:text-foreground">{product.name}</h4>
+              <p className="mb-3 text-base text-gray-600 dark:text-muted-foreground font-medium">{product.description}</p>
               <div className="grid grid-cols-3 gap-2 text-center">
                 <div className="rounded-lg bg-gradient-to-br from-primary/10 to-transparent p-3 border border-primary/20">
-                  <div className="text-sm text-muted-foreground font-medium">Crecimiento</div>
+                  <div className="text-sm text-gray-500 dark:text-muted-foreground font-medium">Crecimiento</div>
                   <div className="text-lg font-bold text-primary">{product.growth}%</div>
                 </div>
                 <div className="rounded-lg bg-gradient-to-br from-accent/10 to-transparent p-3 border border-accent/20">
-                  <div className="text-sm text-muted-foreground font-medium">Participación</div>
+                  <div className="text-sm text-gray-500 dark:text-muted-foreground font-medium">Participación</div>
                   <div className="text-lg font-bold text-accent">{product.share}%</div>
                 </div>
                 <div className="rounded-lg bg-gradient-to-br from-green-500/10 to-transparent p-3 border border-green-500/20">
-                  <div className="text-sm text-muted-foreground font-medium">Ingresos</div>
+                  <div className="text-sm text-gray-500 dark:text-muted-foreground font-medium">Ingresos</div>
                   <div className="text-lg font-bold text-green-500">{product.revenue.split("/")[0]}</div>
                 </div>
               </div>
@@ -271,25 +273,29 @@ export function BcgSection() {
         </div>
 
         {/* Strategies */}
-        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-          <h3 className="mb-8 text-center text-2xl font-bold">Estrategias de Portafolio BCG</h3>
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }} 
+          // CORRECCIÓN: Animación instantánea
+          animate={{ opacity: 1, y: 0 }}
+        >
+          <h3 className="mb-8 text-center text-2xl font-bold text-gray-900 dark:text-foreground">Estrategias de Portafolio BCG</h3>
           <div className="grid gap-6 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
             {bcgStrategies.map((strategy, index) => (
               <motion.div
                 key={strategy.title}
                 initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                // CORRECCIÓN: Animación instantánea
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
-                className="group rounded-xl border-2 border-border/60 bg-gradient-to-br from-primary/15 to-transparent p-6 hover:shadow-lg transition-all"
+                className="group rounded-xl border-2 border-gray-200 dark:border-border/60 bg-white/50 dark:bg-primary/15 p-6 hover:shadow-lg transition-all"
               >
                 <div className="mb-2 flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-sm font-bold text-primary">
                   {index + 1}
                 </div>
-                <h4 className="mb-2 text-lg font-bold">{strategy.title}</h4>
-                <p className="mb-3 text-base text-muted-foreground font-medium">{strategy.description}</p>
+                <h4 className="mb-2 text-lg font-bold text-gray-900 dark:text-foreground">{strategy.title}</h4>
+                <p className="mb-3 text-base text-gray-600 dark:text-muted-foreground font-medium">{strategy.description}</p>
                 <div className="flex items-center justify-between rounded-lg bg-muted/30 px-3 py-2">
-                  <span className="text-xs text-muted-foreground">{strategy.quadrant}</span>
+                  <span className="text-xs text-gray-500 dark:text-muted-foreground">{strategy.quadrant}</span>
                   <span className="text-xs font-semibold text-primary">{strategy.investment}</span>
                 </div>
               </motion.div>
@@ -297,6 +303,6 @@ export function BcgSection() {
           </div>
         </motion.div>
       </div>
-    </section>
+    </div>
   )
 }
